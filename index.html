@@ -25,6 +25,28 @@
             0% { background-position: 0 0; }
             100% { background-position: 50px 50px; }
         }
+        /* --- TEXT LINK BACK TO WEBNET TỐI GIẢN --- */
+        /* --- TEXT LINK BACK TO WEBNET TỐI GIẢN --- */
+        .link-back-webnet {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .link-back-webnet:hover {
+            color: #22d3ee;
+            text-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
+            transform: translateX(-2px);
+        }
     </style>
 </head>
 <body class="bg-[#060814] text-slate-300 antialiased selection:bg-indigo-500 selection:text-white min-h-screen relative overflow-x-hidden pb-24">
@@ -36,25 +58,49 @@
     <div class="absolute top-[30%] right-[-20%] w-[50rem] h-[50rem] rounded-full bg-purple-600/10 blur-[130px] z-0 pointer-events-none animate-pulse duration-[6000ms]"></div>
     <div class="absolute bottom-[-10%] left-[10%] w-[55rem] h-[55rem] rounded-full bg-cyan-600/8 blur-[150px] z-0 pointer-events-none animate-pulse duration-[10000ms]"></div>
 
-    <!-- TOP NAVIGATION BAR -->
-    <nav class="relative z-50 max-w-6xl mx-auto px-6 pt-6 flex justify-between items-center">
-        <div class="flex items-center gap-2.5 text-indigo-400 font-extrabold tracking-wider text-xl">
-            <i class="fa-solid fa-square-nfi text-2xl text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]"></i> 
-            <span>AI HUB <span class="text-[10px] bg-gradient-to-r from-cyan-500 to-indigo-500 px-2 py-0.5 rounded-full text-white font-bold tracking-normal align-middle ml-1">ULTIMATE 4.0</span></span>
+    <!-- TOP NAVIGATION BAR - TỐI ƯU MOBILE DÒNG ĐÔI, DESKTOP DÒNG ĐƠN -->
+    <nav class="relative z-50 max-w-6xl mx-auto px-4 pt-5 pb-2 flex flex-col md:flex-row md:items-center md:justify-between gap-y-5">
+        
+        <!-- HÀNG TRÊN CÙNG TRÊN MOBILE: Chứa Back Link (Trái) và Nút Lang (Phải) -->
+        <div class="w-full flex items-center justify-between md:w-1/4 md:justify-start order-1">
+            <!-- Bên trái: Back to WebNet -->
+            <a href="https://ntkientn.github.io/mypage/webnet.html" class="link-back-webnet">
+                <i class="fa-solid fa-arrow-left-long"></i>
+                <span>Back to WebNet</span>
+            </a>
+            
+            <!-- Hiện nút Language bên góc phải (Chỉ hiển thị trên Mobile ở đây) -->
+            <button onclick="toggleLang()" class="md:hidden bg-slate-900/80 border border-slate-700/80 hover:border-cyan-400 hover:bg-cyan-950/20 text-slate-200 px-3 py-1.5 rounded-xl text-xs font-black tracking-wider transition-all duration-300 cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.5)] flex items-center gap-1.5">
+                <i class="fa-solid fa-globe text-xs text-cyan-400"></i> <span class="lang-text-mobile">ENGLISH</span>
+            </button>
         </div>
-        <button onclick="toggleLang()" id="lang-btn" class="bg-slate-900/80 border border-slate-700/80 hover:border-cyan-400 hover:bg-cyan-950/20 text-slate-200 px-4 py-1.5 rounded-xl text-xs font-black tracking-wider transition-all duration-300 cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.5)] flex items-center gap-2">
-            <i class="fa-solid fa-globe text-sm text-cyan-400"></i> <span id="lang-text">ENGLISH</span>
-        </button>
+
+        <!-- HÀNG DƯỚI TRÊN MOBILE / CHÍNH GIỮA TRÊN DESKTOP: Logo AI Hub -->
+        <div class="w-full md:w-2/4 flex justify-center order-2">
+            <div class="flex items-center gap-2.5 text-indigo-400 font-extrabold tracking-wider text-xl">
+                <i class="fa-solid fa-square-nfi text-2xl text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]"></i> 
+                <span>AI HUB <span class="text-[10px] bg-gradient-to-r from-cyan-500 to-indigo-500 px-2 py-0.5 rounded-full text-white font-bold tracking-normal align-middle ml-1">ULTIMATE 4.0</span></span>
+            </div>
+        </div>
+
+        <!-- NÚT LANGUAGE TRÊN DESKTOP (Ẩn hoàn toàn khi trên Mobile) -->
+        <div class="hidden md:flex w-full md:w-1/4 justify-end order-3">
+            <button onclick="toggleLang()" id="lang-btn" class="bg-slate-900/80 border border-slate-700/80 hover:border-cyan-400 hover:bg-cyan-950/20 text-slate-200 px-4 py-1.5 rounded-xl text-xs font-black tracking-wider transition-all duration-300 cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.5)] flex items-center gap-2">
+                <i class="fa-solid fa-globe text-sm text-cyan-400"></i> <span id="lang-text">ENGLISH</span>
+            </button>
+        </div>
+
     </nav>
 
     <!-- HEADER -->
     <header class="relative z-10 max-w-5xl mx-auto px-6 pt-12 pb-10 text-center space-y-4">
-        <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 px-4 py-1 rounded-full text-xs font-bold text-indigo-300 tracking-wide backdrop-blur-md">
-            <i class="fa-solid fa-bolt text-cyan-400 animate-bounce"></i> Next-Gen AI Tool Navigator
-        </div>
+        
         <h1 class="text-4xl md:text-6xl font-black tracking-tight text-slate-50 leading-none">
             <span data-i18n="head-title-1">Bạn cần làm gì với</span> <span class="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_2px_20px_rgba(99,102,241,0.2)]">AI?</span>
         </h1>
+        <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 px-4 py-1 rounded-full text-xs font-bold text-indigo-300 tracking-wide backdrop-blur-md">
+            <i class="fa-solid fa-bolt text-cyan-400 animate-bounce"></i> Next-Gen AI Tool Navigator
+        </div>
         <p id="hero-desc" data-i18n="hero-desc" class="text-sm md:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium">
             Chọn vai trò và mục tiêu của bạn. Hệ thống sẽ đề xuất chính xác công cụ AI tối ưu nhất, phổ biến nhất và có bản miễn phí.
         </p>
@@ -164,7 +210,7 @@
     <script>
         const i18nData = {
             en: {
-                "head-title-1": "What do you want to accomplish with",
+                "head-title-1": "What to do with",
                 "hero-desc": "Select your professional role and specific goal. The directory will instantly recommend the world's most popular, high-performing AI tools with free options.",
                 "step-1": "Step 1: What is your professional role?",
                 "step-2": "Step 2: Which specific goal do you need AI to solve?",
@@ -424,7 +470,11 @@
                 const key = el.getAttribute('data-i18n');
                 if (i18nData[currentLang][key]) el.innerHTML = i18nData[currentLang][key];
             });
-            document.getElementById('lang-text').innerText = currentLang === 'en' ? 'TIẾNG VIỆT' : 'ENGLISH';
+            
+            // Đổi chữ đồng bộ cho cả nút Desktop và Mobile
+            const textTarget = currentLang === 'en' ? 'TIẾNG VIỆT' : 'ENGLISH';
+            if(document.getElementById('lang-text')) document.getElementById('lang-text').innerText = textTarget;
+            if(document.querySelector('.lang-text-mobile')) document.querySelector('.lang-text-mobile').innerText = textTarget;
             
             updateStepItems(1);
             
