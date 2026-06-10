@@ -220,7 +220,9 @@
                 "role-dev-title": "Developer",
                 "btn-use-now": "Launch Tool",
                 "found-text": "Found {n} Verified Solutions",
-                "badge-best": "Best Choice", "badge-pop": "Most Popular", "badge-free": "Free 100%", "badge-new": "Trending"
+                "badge-best": "Best Choice", "badge-pop": "Most Popular", "badge-free": "Free 100%", "badge-new": "Trending",
+                "development": "Skills & Personal Development",
+                "education": "Education for Pupils & Students"
             },
             vi: {
                 "head-title-1": "Bạn cần làm gì với",
@@ -234,17 +236,22 @@
                 "role-dev-title": "Lập Trình Viên",
                 "btn-use-now": "Sử dụng ngay",
                 "found-text": "Tìm thấy {n} giải pháp xác thực",
-                "badge-best": "Tốt nhất", "badge-pop": "Phổ biến", "badge-free": "Miễn phí 100%", "badge-new": "Công nghệ mới"
+                "badge-best": "Tốt nhất", "badge-pop": "Phổ biến", "badge-free": "Miễn phí 100%", "badge-new": "Công nghệ mới",
+                "development": "Rèn luyện, phát triển năng lực",
+                "education": "Học tập cho học sinh, sinh viên"
             }
         };
 
         // KHO DỮ LIỆU ĐÃ ĐƯỢC CHUẨN HÓA: MỖI TASK LUÔN CÓ ÍT NHẤT 1 BEST/POP VÀ ÍT NHẤT 1 FREE 100%
+        // KHO DỮ LIỆU ĐÃ ĐƯỢC CHUẨN HÓA CỦA ANH KIÊN (ĐÃ BỔ SUNG 2 MỤC TIÊU MỚI)
         const database = {
             tasks: {
                 personal: [
                     { id: "per-search", nameVi: "Tìm kiếm thông tin, tra cứu dữ liệu & Kiến thức phổ thông", nameEn: "Web Search, Fast Information & General Knowledge Lookup", icon: "fa-earth-americas" },
                     { id: "per-knowledge", nameVi: "Nghiên cứu kiến thức sâu & Tổng hợp tài liệu dài", nameEn: "Deep Academic Research & Document Synthesis", icon: "fa-graduation-cap" },
-                    { id: "per-life", nameVi: "Phân tích tâm lý, cuộc sống tự nhiên & Triết học sâu", nameEn: "Analyze Psychology, Nature Laws & Philosophy", icon: "fa-seedling" }
+                    { id: "per-life", nameVi: "Phân tích tâm lý, cuộc sống tự nhiên & Triết học sâu", nameEn: "Analyze Psychology, Nature Laws & Philosophy", icon: "fa-seedling" },
+                    { id: "per-development", nameVi: "Rèn luyện, phát triển năng lực (Presentation, Speech, Interview, Sport...)", nameEn: "Skills & Personal Development (Presentation, Speech, Interview, Sport...)", icon: "fa-dumbbell" },
+                    { id: "per-education", nameVi: "Học tập cho học sinh, sinh viên (Toán, Lý, Hóa, Essay, Từ vựng...)", nameEn: "Education for Pupils & Students (Math, Science, Essay, Memory...)", icon: "fa-book-open" }
                 ],
                 pm: [
                     { id: "pm-brainstorm", nameVi: "Brainstorm Requirement & Ý tưởng tính năng App", nameEn: "Brainstorm Requirements & Mobile App Concepts", icon: "fa-lightbulb" },
@@ -273,12 +280,27 @@
                 ],
                 "per-knowledge": [
                     { name: "NotebookLM (Google)", rank: "badge-best", tier: "Free 100%", descVi: "Kho tổng hợp tri thức cá nhân đỉnh cao từ Google. Miễn phí hoàn toàn, hỗ trợ đọc 50 file PDF cùng lúc và tự chuyển hóa thành Audio Podcast đối thoại.", descEn: "Google's free academic workspace. Upload dozens of source PDFs or web links to instantly generate interactive audio briefings.", link: "https://notebooklm.google" },
-                    { name: "Claude 3.5 Sonnet", rank: "badge-best", tier: "Free Tier", descVi: "Văn phong học thuật sắc sảo, có khả năng phân tích ngữ cảnh của các văn bản dài và tài liệu khoa học phức tạp một cách mạch lạc.", descEn: "The global benchmark for articulated writing, complex reading, and structured logical synthesis of macro text files.", link: "https://claude.ai" },
+                    { name: "Claude 3.5 Sonnet", rank: "badge-best", tier: "Free Tier", descVi: "Vayan phong học thuật sắc sảo, có khả năng phân tích ngữ cảnh của các văn bản dài và tài liệu khoa học phức tạp một cách mạch lạc.", descEn: "The global benchmark for articulated writing, complex reading, and structured logical synthesis of macro text files.", link: "https://claude.ai" },
                     { name: "Notion AI", rank: "badge-pop", tier: "Free Trial", descVi: "Trợ lý viết lách, tóm tắt bài giảng và biên tập định dạng văn bản trực tiếp ngay trong không gian ghi chú số của bạn.", descEn: "Embedded text companion that summarizes layouts, fixes grammar, and restructures raw study blocks right on your page.", link: "https://www.notion.so" }
                 ],
                 "per-life": [
                     { name: "DeepSeek-R1", rank: "badge-best", tier: "Free 100%", descVi: "Mô hình suy luận chuyên sâu. Hiển thị từng bước suy nghĩ logic để bóc tách triết học, quy luật tự nhiên và tư duy tâm lý phức tạp.", descEn: "Advanced reasoning model that logs its thought chains to solve multifaceted philosophy and behavioral pattern queries.", link: "https://www.deepseek.com" },
                     { name: "Claude 3.5 Sonnet", rank: "badge-pop", tier: "Free Tier", descVi: "Sở hữu độ thấu cảm ngôn từ cao, đưa ra các phân tích góc nhìn cuộc sống khách quan, sâu sắc và đầy tính nhân văn.", descEn: "Highly empathetic model ideal for processing qualitative human scenarios, ethics, and long-form narrative advice.", link: "https://claude.ai" }
+                ],
+                "per-development": [
+                    { name: "Yoodli AI", rank: "badge-best", tier: "Free Tier", descVi: "AI huấn luyện kỹ năng thuyết trình và nói trước đám đông xuất sắc. Đếm chính xác từ thừa (à, ùm), phân tích tốc độ nói và ngôn ngữ cơ thể.", descEn: "AI speech coach providing private, real-time analytics on your communication, pacing, body language, and filler words.", link: "https://yoodli.ai" },
+                    { name: "Poised AI", rank: "badge-pop", tier: "Free Tier", descVi: "Trợ lý giao tiếp chạy ngầm trong cuộc họp trực tuyến (Zoom/Teams), cảnh báo trực tiếp nếu bạn nói quá nhanh hoặc thiếu năng lượng.", descEn: "An AI-powered communication coach that helps you speak with confidence and clarity during live professional meetings.", link: "https://poised.com" },
+                    { name: "Google Interview Warmup", rank: "badge-free", tier: "Free 100%", descVi: "Nền tảng luyện trả lời phỏng vấn ngành dọc (bao gồm Project Management) miễn phí hoàn toàn, giúp tối ưu hóa thuật ngữ chuyên nghiệp.", descEn: "A free tool from Google designed to practice answering behavioral and situational interview questions confidently.", link: "https://grow.google/interview-warmup" },
+                    { name: "Timepage (Moleskine Studio)", rank: "badge-new", tier: "Free Trial", descVi: "Ứng dụng lịch thông minh và quản lý thời gian cá nhân với giao diện nghệ thuật trực quan đỉnh cao từ Moleskine.", descEn: "An intuitive, designer smart calendar app by Moleskine Studio tailored to organize schedules smoothly.", link: "https://moleskine-studio.com" },
+                    { name: "Freeletics AI Coach", rank: "badge-new", tier: "Free Trial", descVi: "Huấn luyện viên thể hình số. Sử dụng thuật toán AI thiết lập giáo án Workout và Fitness chi tiết tại nhà dựa trên thể trạng.", descEn: "AI-driven fitness companion offering highly custom workout routines and fitness schedules without equipment.", link: "https://www.freeletics.com" },
+                    { name: "Interviewer.AI", rank: "badge-new", tier: "Free Trial", descVi: "Hệ thống giả lập vòng phỏng vấn sơ loại qua video, chấm điểm tự động phong thái và kỹ năng mềm bằng trí tuệ nhân tạo.", descEn: "Automated video screening platform that grades candidate soft skills and presentation confidence metrics.", link: "https://interviewer.ai" }
+                ],
+                "per-education": [
+                    { name: "Wolfram Alpha", rank: "badge-best", tier: "Free Tier", descVi: "Cỗ máy tính toán tri thức đỉnh cao toàn cầu. Giải chi tiết từng bước (Step-by-step) các bài toán đại số, vật lý, hóa học siêu phức tạp.", descEn: "A massive computational knowledge engine that computes expert-level mathematical answers and science analytics.", link: "https://www.wolframalpha.com" },
+                    { name: "ChatGPT (OpenAI)", rank: "badge-pop", tier: "Free Tier", descVi: "Trợ lý học tập vạn năng cho học sinh sinh viên: Giải thích khái niệm khó, tóm tắt bài giảng, hỗ trợ sửa và dịch thuật bài luận.", descEn: "Universal learning sidekick perfect for explaining academic text, summarizing research papers, and structural editing.", link: "https://chatgpt.com" },
+                    { name: "Socratic by Google", rank: "badge-free", tier: "Free 100%", descVi: "Ứng dụng quét đề bài bằng camera trên điện thoại, AI của Google tự tìm kiếm bài giải kèm tài liệu hình ảnh minh họa trực quan.", descEn: "Google's open education app that scans homework queries to output rich visual explanations and lecture videos.", link: "https://socratic.org" },
+                    { name: "Anki AI (AnkiWeb)", rank: "badge-new", tier: "Free 100%", descVi: "Hệ thống Flashcard số ứng dụng thuật toán lặp lại ngắt quãng (Spaced Repetition), vũ khí tối thượng để ghi nhớ từ vựng lâu dài.", descEn: "Powerful flashcard ecosystem driven by smart spacing algorithms to optimize long-term text and vocabulary retention.", link: "https://apps.ankiweb.net" },
+                    { name: "ELSA Speak AI", rank: "badge-new", tier: "Free Tier", descVi: "AI luyện nói tiếng Anh hàng đầu. Lắng nghe và bóc tách lỗi phát âm chính xác đến từng âm tiết, định hướng theo chuẩn bản xứ.", descEn: "World-class English speaking tutor that analyzes voice inputs to fix pronunciation flaws syllable by syllable.", link: "https://elsaspeak.com" }
                 ],
 
                 // --- PROJECT MANAGER ---
@@ -314,7 +336,7 @@
                 "des-image": [
                     { name: "Midjourney (v6)", rank: "badge-best", tier: "Paid", descVi: "Đỉnh cao đồ họa thế giới. Tạo hình ảnh concept nghệ thuật, banner quảng cáo sản phẩm với độ thẩm mỹ sâu và sắc nét.", descEn: "The world standard for artistic asset rendering, detailed marketing layouts, and high-fidelity branding art.", link: "https://www.midjourney.com" },
                     { name: "Recraft AI", rank: "badge-pop", tier: "Free Tier", descVi: "Công cụ tối thượng cho thiết kế phần mềm: Xuất file ảnh Vector (.svg) nguyên bản và tạo các bộ icon đồng bộ thiết kế UI.", descEn: "Built for UI designers: Outputs native infinite-resolution vector graphics (.svg) and matched app icon grids.", link: "https://www.recraft.ai" },
-                    { name: "Canva AI", rank: "badge-free", tier: "Free 100%", descVi: "Hỗ trợ xóa nền nhanh, chỉnh sửa vật thể bằng cọ vẽ AI, thiết kế banner truyền thông mạng xã hội dễ dàng, miễn phí.", descEn: "Expedites marketing image edits, object brush swaps, and high-quality bg removals on an open free canvas.", link: "https://www.canva.com" }
+                    { name: "Canva AI", rank: "badge-free", tier: "Free 100%", descVi: "Hỗ trợ xóa nền nhanh, chỉnh sửa vật thể bằng cọ vẽ AI, thiết kế banner truyền thông mạng xã hội dễ dàng, miễn phí.", descEn: "Expedites marketing image edits, object brush swaps, and high-quality bg removals on an open free canvas.", link: "https://canva.com" }
                 ],
                 "des-video": [
                     { name: "Synthesia", rank: "badge-best", tier: "Paid Only", descVi: "Sản xuất video giới thiệu sản phẩm chuyên nghiệp với người ảo (Avatar) nói chuyện tự nhiên bằng 120+ ngôn ngữ từ kịch bản văn bản.", descEn: "Generates high-end corporate product videos with realistic human avatars reading scripts in 120+ languages.", link: "https://www.synthesia.io" },
@@ -498,5 +520,39 @@
 
         updateLanguageDOM();
     </script>
+ 
+    <script>
+        window.difyChatbotConfig = {
+        token: '01A0artkKYLulTJr',
+        inputs: {
+            // You can define the inputs from the Start node here
+            // key is the variable name
+            // e.g.
+            // name: "NAME"
+        },
+        systemVariables: {
+            // user_id: 'YOU CAN DEFINE USER ID HERE',
+            // conversation_id: 'YOU CAN DEFINE CONVERSATION ID HERE, IT MUST BE A VALID UUID',
+        },
+        userVariables: {
+            // avatar_url: 'YOU CAN DEFINE USER AVATAR URL HERE',
+            // name: 'YOU CAN DEFINE USER NAME HERE',
+        },
+        }
+    </script>
+    <script
+        src="https://udify.app/embed.min.js"
+        id="01A0artkKYLulTJr"
+        defer>
+    </script>
+    <style>
+        #dify-chatbot-bubble-button {
+            background-color: #1C64F2 !important;
+        }
+        #dify-chatbot-bubble-window {
+            width: 24rem !important;
+            height: 40rem !important;
+        }
+    </style>     
 </body>
 </html>
