@@ -403,6 +403,12 @@
 
             document.getElementById('section-tasks').classList.remove('hidden');
             document.getElementById('section-results').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('section-tasks').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 100);
         }
 
         function selectTask(taskId, element) {
