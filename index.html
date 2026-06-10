@@ -46,6 +46,19 @@
             text-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
             transform: translateX(-2px);
         }
+        /* ÉP GIAO DIỆN KHÔNG BỊ TRÀN TRÊN MOBILE */
+        html, body {
+            width: 100%;
+            overflow-x: hidden; /* Chặn tuyệt đối hiện tượng cuộn ngang */
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Ép các thẻ cha lớn không được vượt quá độ rộng màn hình */
+        .container, .wrapper, main {
+            max-width: 100% !important;
+            overflow-hidden: hidden;
+        }
     </style>
 </head>
 <body class="bg-[#060814] text-slate-300 antialiased selection:bg-indigo-500 selection:text-white min-h-screen relative overflow-x-hidden pb-24">
