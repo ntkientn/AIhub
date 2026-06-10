@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI Hub - Cyber Interactive Directory v4.0</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        /* Hiệu ứng lưới không gian chuyển động nhẹ */
+        .tech-grid {
+            background-image: linear-gradient(to right, rgba(99, 102, 241, 0.10) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(99, 102, 241, 0.10) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 40s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+        /* --- TEXT LINK BACK TO WEBNET TỐI GIẢN --- */
+        .link-back-webnet {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #84a0c7;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.07em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .link-back-webnet:hover {
+            color: #22d3ee;
+            text-shadow: 0 0 8px rgba(34, 211, 238, 0.6);
+            transform: translateX(-2px);
+        }
+    </style>
+</head>
+<body class="bg-[#060814] text-slate-300 antialiased selection:bg-indigo-500 selection:text-white min-h-screen relative overflow-x-hidden pb-24w-full">
+
+    <!-- KHÔNG GIAN BẢN NỀN TƯƠNG LAI (FUTURISTIC VISUALIZATION) -->
+    <div class="absolute inset-0 tech-grid z-0 pointer-events-none"></div>
+    <!-- Các khối cầu năng lượng phát quang (Cyber Orbs) -->
+    <div class="absolute top-[-5%] left-[-10%] w-[30rem] md:w-[60rem] h-[30rem] md:h-[60rem] rounded-full bg-indigo-600/10 blur-[100px] md:blur-[140px] z-0 pointer-events-none animate-pulse duration-[8000ms]"></div>
+    <div class="absolute top-[30%] right-[-20%] w-[25rem] md:w-[50rem] h-[25rem] md:h-[50rem] rounded-full bg-purple-600/10 blur-[90px] md:blur-[130px] z-0 pointer-events-none animate-pulse duration-[6000ms]"></div>
+    <div class="absolute bottom-[-10%] left-[10%] w-[30rem] md:w-[55rem] h-[30rem] md:h-[55rem] rounded-full bg-cyan-600/8 blur-[110px] md:blur-[150px] z-0 pointer-events-none animate-pulse duration-[10000ms]"></div>
+
+    <!-- TOP NAVIGATION BAR - FIX LỖI OVERFLOW VÀ FLEXBOX MOBILE -->
+    <nav class="relative z-50 max-w-6xl mx-auto px-4 pt-5 pb-2 flex flex-col md:flex-row md:items-center md:justify-between gap-y-5 w-full overflow-hidden">
+        
+        <!-- HÀNG TRÊN CÙNG TRÊN MOBILE -->
+        <div class="w-full flex items-center justify-between md:w-auto order-1">
+            <!-- Bên trái: Back to WebNet -->
+            <a href="https://ntkientn.github.io/mypage/webnet.html" class="link-back-webnet">
+                <i class="fa-solid fa-arrow-left-long"></i>
+                <span>Back to WebNet</span>
+            </a>
+            
+            <!-- Hiện nút Language bên góc phải Mobile -->
+            <button onclick="toggleLang()" class="md:hidden bg-slate-900/80 border border-slate-700/80 hover:border-cyan-400 hover:bg-cyan-950/20 text-slate-200 px-3 py-1.5 rounded-xl text-xs font-black tracking-wider transition-all duration-300 cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.5)] flex items-center gap-1.5">
+                <i class="fa-solid fa-globe text-xs text-cyan-400"></i> <span class="lang-text-mobile">ENGLISH</span>
+            </button>
+        </div>
+
+        <!-- HÀNG DƯỚI TRÊN MOBILE / CHÍNH GIỮA TRÊN DESKTOP: Logo AI Hub -->
+        <div class="w-full md:w-auto flex justify-center order-2">
+            <div class="flex items-center gap-2.5 text-indigo-400 font-extrabold tracking-wider text-2xl md:text-3xl text-center">
+                <i class="fa-solid fa-brain text-xl md:text-2xl text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]"></i> 
+                <span class="flex flex-wrap items-center justify-center gap-2">AI HUB <span class="text-[9px] md:text-[10px] bg-gradient-to-r from-cyan-500 to-indigo-500 px-2 py-0.5 rounded-full text-white font-bold tracking-normal align-middle">ULTIMATE 4.0</span></span>
+            </div>
+        </div>
+
+        <!-- NÚT LANGUAGE TRÊN DESKTOP -->
+        <div class="hidden md:flex w-full md:w-auto justify-end order-3">
+            <button onclick="toggleLang()" id="lang-btn" class="bg-slate-900/80 border border-slate-700/80 hover:border-cyan-400 hover:bg-cyan-950/20 text-slate-200 px-4 py-1.5 rounded-xl text-xs font-black tracking-wider transition-all duration-300 cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.5)] flex items-center gap-2">
+                <i class="fa-solid fa-globe text-sm text-cyan-400"></i> <span id="lang-text">ENGLISH</span>
+            </button>
+        </div>
+
+    </nav>
+
+    <!-- HEADER -->
+    <header class="relative z-10 max-w-5xl mx-auto px-4 md:px-6 pt-12 pb-10 text-center space-y-4">
+        <h1 class="text-3xl md:text-5xl font-black tracking-normal text-slate-50 leading-tight md:leading-none">
+            <span data-i18n="head-title-1">Bạn cần làm gì với</span> <span class="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent drop-shadow-[0_2px_20px_rgba(99,102,241,0.2)]">AI?</span>
+        </h1>
+        <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 px-4 py-1 rounded-full text-xs font-bold text-indigo-300 tracking-wide backdrop-blur-md">
+            <i class="fa-solid fa-bolt text-cyan-400 animate-bounce"></i> Next-Gen AI Tool Navigator
+        </div>
+        <p id="hero-desc" data-i18n="hero-desc" class="text-sm md:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed font-medium px-2">
+            Chọn vai trò và mục tiêu của bạn. Hệ thống sẽ đề xuất chính xác công cụ AI tối ưu nhất, phổ biến nhất và có bản miễn phí.
+        </p>
+    </header>
+
+    <!-- MAIN INTERACTIVE HUB -->
+    <main class="relative z-10 max-w-6xl mx-auto px-4 md:px-6 space-y-14 w-full box-border">
+        
+        <!-- BƯỚC 1: CHỌN VAI TRÒ -->
+        <section class="space-y-5 bg-slate-900/20 border border-slate-800/60 p-4 md:p-6 rounded-2xl backdrop-blur-md w-full box-border">
+            <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 flex items-center gap-3">
+                <span id="dot-step-1" class="relative flex h-3.5 w-3.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400/50 opacity-40 delay-300"></span>
+                    <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.8)]"></span>
+                </span>
+                <span data-i18n="step-1">Bước 1: Vai trò của bạn là gì?</span>
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- ROLE 1 -->
+                <button onclick="selectRole('personal')" id="btn-role-personal" class="role-btn p-5 rounded-xl border border-slate-800 bg-slate-900/40 text-left hover:border-cyan-500/60 transition-all duration-300 cursor-pointer group shadow-md flex flex-col justify-between gap-5 relative overflow-hidden">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500/20 transition-colors"><i class="fa-solid fa-user-astronaut text-xl"></i></div>
+                    <div>
+                        <h4 data-i18n="role-per-title" class="font-black text-slate-100 text-base md:text-lg tracking-tight">Người dùng cá nhân</h4>
+                        <p class="text-xs text-slate-500 mt-1 font-medium">Search, Knowledge, Multi-task, Life Analysis...</p>
+                    </div>
+                </button>
+                <!-- ROLE 2 -->
+                <button onclick="selectRole('pm')" id="btn-role-pm" class="role-btn p-5 rounded-xl border border-slate-800 bg-slate-900/40 text-left hover:border-indigo-500/60 transition-all duration-300 cursor-pointer group shadow-md flex flex-col justify-between gap-5 relative overflow-hidden">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500/20 transition-colors"><i class="fa-solid fa-briefcase text-xl"></i></div>
+                    <div>
+                        <h4 data-i18n="role-pm-title" class="font-black text-slate-100 text-base md:text-lg tracking-tight">Quản Lý Dự Án</h4>
+                        <p class="text-xs text-slate-500 mt-1 font-medium">Requirements, Charter, Meetings, Presentations...</p>
+                    </div>
+                </button>
+                <!-- ROLE 3 -->
+                <button onclick="selectRole('designer')" id="btn-role-designer" class="role-btn p-5 rounded-xl border border-slate-800 bg-slate-900/40 text-left hover:border-purple-500/60 transition-all duration-300 cursor-pointer group shadow-md flex flex-col justify-between gap-5 relative overflow-hidden">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover:bg-purple-500/20 transition-colors"><i class="fa-solid fa-palette text-xl"></i></div>
+                    <div>
+                        <h4 data-i18n="role-des-title" class="font-black text-slate-100 text-base md:text-lg tracking-tight">Thiết Kế Đồ Họa & Giao Diện</h4>
+                        <p class="text-xs text-slate-500 mt-1 font-medium">UI/UX Layout, Vector Art, Video Clips, Mindmaps...</p>
+                    </div>
+                </button>
+                <!-- ROLE 4 -->
+                <button onclick="selectRole('developer')" id="btn-role-developer" class="role-btn p-5 rounded-xl border border-slate-800 bg-slate-900/40 text-left hover:border-amber-500/60 transition-all duration-300 cursor-pointer group shadow-md flex flex-col justify-between gap-5 relative overflow-hidden">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 group-hover:bg-amber-500/20 transition-colors"><i class="fa-solid fa-code text-xl"></i></div>
+                    <div>
+                        <h4 data-i18n="role-dev-title" class="font-black text-slate-100 text-base md:text-lg tracking-tight">Lập Trình Viên</h4>
+                        <p class="text-xs text-slate-500 mt-1 font-medium">Coding, Debugging, Automation, UI Generation...</p>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- BƯỚC 2: CHỌN MỤC TIÊU CẦN LÀM -->
+        <section id="section-tasks" class="space-y-5 bg-slate-900/20 border border-slate-800/60 p-4 md:p-6 rounded-2xl backdrop-blur-md hidden w-full box-border">
+            <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 flex items-center gap-3">
+                <span id="dot-step-2" class="relative flex h-3.5 w-3.5"><span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-slate-700"></span></span>
+                <span data-i18n="step-2">Bước 2: Bạn cần AI hỗ trợ xử lý mục tiêu nào?</span>
+            </h3>
+            <div id="task-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
+        </section>
+
+        <!-- BƯỚC 3: KHỐI KẾT QUẢ ĐỀ XUẤT -->
+        <section id="section-results" class="hidden relative w-full box-border">
+            <div class="bg-gradient-to-b from-[#11162d] to-[#0a0d1d] border-2 border-indigo-500/40 p-4 md:p-8 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.6),0_0_40px_rgba(99,102,241,0.15)] space-y-8 relative z-10 w-full box-border">
+                <div class="flex justify-between items-center border-b border-indigo-500/20 pb-5 flex-wrap gap-4">
+                    <h3 class="text-xs font-black uppercase tracking-widest text-slate-300 flex items-center gap-3">
+                        <span id="dot-step-3" class="relative flex h-3.5 w-3.5"><span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-slate-700"></span></span>
+                        <span data-i18n="step-3" class="bg-gradient-to-r from-cyan-400 to-indigo-300 bg-clip-text text-transparent font-extrabold text-sm">Danh sách giải pháp AI tối ưu</span>
+                    </h3>
+                    <span id="results-count" class="text-xs uppercase font-black tracking-widest text-cyan-400 bg-cyan-500/10 px-4 py-1.5 rounded-xl border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.15)]"></span>
+                </div>
+                <div id="ai-list-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center mt-36 text-xs text-slate-500 relative z-10 space-y-2 px-4">
+        <p class="tracking-wide">© 2026 AI Hub Directory • Global Database System</p>
+        <p class="text-slate-600 font-medium">Handcrafted by <span class="text-indigo-400 font-semibold">Nguyen Trung Kien (v1.3.20260603)</span>. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const i18nData = {
+            en: {
+                "head-title-1": "What to do with",
+                "hero-desc": "Select your professional role and specific goal. The directory will instantly recommend the world's most popular, high-performing AI tools with free options.",
+                "step-1": "Step 1: What is your professional role?",
+                "step-2": "Step 2: Which specific goal do you need AI to solve?",
+                "step-3": "Recommended Premium AI Solutions (Expanded Database Setup)",
+                "role-per-title": "Individual User",
+                "role-pm-title": "Project Manager",
+                "role-des-title": "UI/UX & Graphics Designer",
+                "role-dev-title": "Developer",
+                "btn-use-now": "Launch Tool",
+                "found-text": "Found {n} Verified Solutions",
+                "badge-best": "Best Choice", "badge-pop": "Most Popular", "badge-free": "Free 100%", "badge-new": "Trending"
+            },
+            vi: {
+                "head-title-1": "Bạn cần làm gì với",
+                "hero-desc": "Chọn vai trò và mục tiêu của bạn. Hệ thống sẽ đề xuất chính xác công cụ AI tối ưu nhất, phổ biến nhất và có bản miễn phí.",
+                "step-1": "Bước 1: Vai trò của bạn là gì?",
+                "step-2": "Bước 2: Bạn cần AI hỗ trợ xử lý mục tiêu nào?",
+                "step-3": "Danh sách giải pháp AI tối ưu",
+                "role-per-title": "Người dùng cá nhân",
+                "role-pm-title": "Quản Lý Dự Án",
+                "role-des-title": "Thiết Kế Đồ Họa & Giao Diện",
+                "role-dev-title": "Lập Trình Viên",
+                "btn-use-now": "Sử dụng ngay",
+                "found-text": "Tìm thấy {n} giải pháp xác thực",
+                "badge-best": "Tốt nhất", "badge-pop": "Phổ biến", "badge-free": "Miễn phí 100%", "badge-new": "Công nghệ mới"
+            }
+        };
+
+        // KHO DỮ LIỆU ĐÃ ĐƯỢC MỞ RỘNG (ĐẠT TỪ 5 - 10 KẾT QUẢ CHO MỖI DANH MỤC TÌM KIẾM)
+        const database = {
+            tasks: {
+                personal: [
+                    { id: "per-search", nameVi: "Tìm kiếm thông tin, tra cứu dữ liệu & Kiến thức phổ thông", nameEn: "Web Search, Fast Information & General Knowledge Lookup", icon: "fa-earth-americas" },
+                    { id: "per-knowledge", nameVi: "Nghiên cứu kiến thức sâu & Tổng hợp tài liệu dài", nameEn: "Deep Academic Research & Document Synthesis", icon: "fa-graduation-cap" },
+                    { id: "per-life", nameVi: "Phân tích tâm lý, cuộc sống tự nhiên & Triết học sâu", nameEn: "Analyze Psychology, Nature Laws & Philosophy", icon: "fa-seedling" },
+                    { id: "per-development", nameVi: "Rèn luyện, phát triển năng lực (Presentation, Speech, Interview, Sport...)", nameEn: "Skills & Personal Development (Presentation, Speech, Interview, Sport...)", icon: "fa-dumbbell" },
+                    { id: "per-education", nameVi: "Học tập cho học sinh, sinh viên (Toán, Lý, Hóa, Essay, Từ vựng...)", nameEn: "Education for Pupils & Students (Math, Science, Essay, Memory...)", icon: "fa-book-open" }
+                ],
+                pm: [
+                    { id: "pm-brainstorm", nameVi: "Brainstorm Requirement & Ý tưởng tính năng App", nameEn: "Brainstorm Requirements & Mobile App Concepts", icon: "fa-lightbulb" },
+                    { id: "pm-charter", nameVi: "Soạn thảo Project Charter & Framework quản trị (PMI)", nameEn: "Draft Project Charters & Governance Frameworks", icon: "fa-file-signature" },
+                    { id: "pm-meeting", nameVi: "Tự động ghi âm cuộc họp, Take note & Tóm tắt báo cáo", nameEn: "Automated Meeting Recording, Noting & Summarizing", icon: "fa-microphone-lines" },
+                    { id: "pm-presentation", nameVi: "Tạo Slide Presentation báo cáo Sponsor / Ban giám đốc", nameEn: "Create Executive Presentation Slides for Sponsors", icon: "fa-display" },
+                    { id: "pm-report", nameVi: "Thiết lập Báo cáo (Bảng biểu, Diagram, Flowchart)", nameEn: "Build Project Reports (Data Tables, Diagrams, Flowcharts)", icon: "fa-chart-pie" }
+                ],
+                designer: [
+                    { id: "des-mindmap", nameVi: "Phác thảo sơ đồ tư duy / Mindmap phân tích ý tưởng", nameEn: "Draft Visual Mindmaps & Concept Architecture", icon: "fa-sitemap" },
+                    { id: "des-image", nameVi: "Tạo hình ảnh Concept, Vector Art, Banner & Quảng cáo", nameEn: "Generate Concept Art, Vectors, Banners & Branding Assets", icon: "fa-image" },
+                    { id: "des-video", nameVi: "Sản xuất Video ngắn, Clip sản phẩm & Storyboard động", nameEn: "Produce Short Videos, Product Clips & Animated Storyboards", icon: "fa-video" }
+                ],
+                developer: [
+                    { id: "dev-coding", nameVi: "Viết code tự động, Khắc phục lỗi & Tối ưu thuật toán", nameEn: "Automated Code Generation, Debugging & Refactoring", icon: "fa-laptop-code" },
+                    { id: "dev-ui", nameVi: "Dựng nhanh giao diện UI/UX từ Prompt hoặc Hình vẽ", nameEn: "Generate Visual Frontend UI Components from Prompt", icon: "fa-window-maximize" },
+                    { id: "dev-automation", nameVi: "Xây dựng luồng tự động hóa (Automation Workflow/API)", nameEn: "Build Automated Multi-app Workflows & Integrations", icon: "fa-gears" }
+                ]
+            },
+            aiTools: {
+                "per-search": [
+                    { name: "Gemini (Google)", rank: "badge-best", tier: "Free Tier", descVi: "Đại diện đa nhiệm xuất sắc nhất từ Google. Kết nối dữ liệu thời gian thực mượt mà, phân tích hình ảnh và tích hợp sâu hệ sinh thái vô cùng tiện lợi.", descEn: "Google's flagship multimodal AI. Perfectly processes real-time web telemetry, native image understanding, and ecosystem apps.", link: "https://gemini.google.com" },
+                    { name: "Perplexity AI", rank: "badge-pop", tier: "Free Tier", descVi: "Vua tìm kiếm hội thoại. Quét mạng Internet toàn cầu, tổng hợp câu trả lời ngắn gọn và trích dẫn chuẩn xác các link nguồn tin cậy.", descEn: "The standard for conversational web crawling. Aggregates live data and delivers clear, structured citation footnotes.", link: "https://www.perplexity.ai" },
+                    { name: "DeepSeek (Search Mode)", rank: "badge-free", tier: "Free 100%", descVi: "Mô hình tìm kiếm miễn phí hoàn toàn không giới hạn. Lọc sạch tin rác internet để đưa ra câu trả lời tập trung vào bản chất.", descEn: "100% free search utility. Strips away marketing web spam to serve direct, raw truths derived from community boards.", link: "https://www.deepseek.com" },
+                    { name: "Phind", rank: "badge-new", tier: "Free Tier", descVi: "Công cụ tìm kiếm tối ưu hóa mạnh mẽ dành cho kỹ thuật và lập trình thông tin, tổng hợp trực tiếp từ tài liệu kỹ thuật gốc.", descEn: "Search engine heavily optimized for technical and developer inquiries, compiling data straight from official docs.", link: "https://www.phind.com" },
+                    { name: "Grok AI (xAI)", rank: "badge-new", tier: "Free Tier", descVi: "Tìm kiếm thông tin thời gian thực tích hợp sâu với mạng xã hội X, nắm bắt xu hướng và tin tức nóng hổi nhanh nhất.", descEn: "Real-time query engine leveraging direct telemetry streams from X to extract breaking global news trends.", link: "https://x.com" },
+                    { name: "You.com", rank: "badge-new", tier: "Free Tier", descVi: "Trình duyệt tìm kiếm AI tùy biến cao, cho phép lựa chọn và so sánh kết quả từ nhiều mô hình AI lớn cùng lúc.", descEn: "Customizable AI search matrix allowing comparison setups between multiple foundation models simultaneously.", link: "https://you.com" }
+                ],
+                "per-knowledge": [
+                    { name: "NotebookLM (Google)", rank: "badge-best", tier: "Free 100%", descVi: "Kho tổng hợp tri thức cá nhân đỉnh cao từ Google. Miễn phí hoàn toàn, hỗ trợ đọc 50 file PDF cùng lúc và tự chuyển hóa thành Audio Podcast đối thoại.", descEn: "Google's free academic workspace. Upload dozens of source PDFs or web links to instantly generate interactive audio briefings.", link: "https://notebooklm.google" },
+                    { name: "Claude 3.5 Sonnet", rank: "badge-best", tier: "Free Tier", descVi: "Văn phong học thuật sắc sảo, có khả năng phân tích ngữ cảnh của các văn bản dài và tài liệu khoa học phức tạp một cách mạch lạc.", descEn: "The global benchmark for articulated writing, complex reading, and structured logical synthesis of macro text files.", link: "https://claude.ai" },
+                    { name: "Notion AI", rank: "badge-pop", tier: "Free Trial", descVi: "Trợ lý viết lách, tóm tắt bài giảng và biên tập định dạng văn bản trực tiếp ngay trong không gian ghi chú số của bạn.", descEn: "Embedded text companion that summarizes layouts, fixes grammar, and restructures raw study blocks right on your page.", link: "https://www.notion.so" },
+                    { name: "ChatGPT (GPT-4o)", rank: "badge-new", tier: "Free Tier", descVi: "Mô hình ngôn ngữ lớn phổ biến toàn cầu, xuất sắc trong việc phân tích tóm tắt các tệp tài liệu đa định dạng.", descEn: "Global benchmark multi-modal LLM, optimized for summarizing high-density multi-format document sets.", link: "https://chatgpt.com" },
+                    { name: "ChatPDF", rank: "badge-new", tier: "Free Tier", descVi: "Ứng dụng chuyên biệt tối giản cho phép bạn tải tệp tài liệu PDF lên và tiến hành trò chuyện, đặt câu hỏi trực tiếp.", descEn: "Dedicated simple interface to parse static PDF text sheets and converse directly via instant query answers.", link: "https://www.chatpdf.com" },
+                    { name: "Consensus AI", rank: "badge-new", tier: "Free Tier", descVi: "AI tìm kiếm chuyên sâu trong kho tàng 200 triệu bài báo nghiên cứu khoa học, trích xuất kết luận có bằng chứng xác thực.", descEn: "Scientific search tool connected to 200M+ research papers, outputting evidence-backed peer-reviewed summaries.", link: "https://consensus.app" }
+                ],
+                "per-life": [
+                    { name: "DeepSeek-R1", rank: "badge-best", tier: "Free 100%", descVi: "Mô hình suy luận chuyên sâu. Hiển thị từng bước suy nghĩ logic để bóc tách triết học, quy luật tự nhiên và tư duy tâm lý phức tạp.", descEn: "Advanced reasoning model that logs its thought chains to solve multifaceted philosophy and behavioral pattern queries.", link: "https://www.deepseek.com" },
+                    { name: "Claude 3.5 Sonnet", rank: "badge-pop", tier: "Free Tier", descVi: "Sở hữu độ thấu cảm ngôn từ cao, đưa ra các phân tích góc nhìn cuộc sống khách quan, sâu sắc và đầy tính nhân văn.", descEn: "Highly empathetic model ideal for processing qualitative human scenarios, ethics, and long-form narrative advice.", link: "https://claude.ai" },
+                    { name: "ChatGPT (Custom GPTs)", rank: "badge-new", tier: "Free Tier", descVi: "Sử dụng các bot cấu hình chuyên sâu về tâm lý học, triết học Stoic hoặc tham vấn đời sống do cộng đồng xây dựng.", descEn: "Access highly tailored community-driven bots configured for psychology frameworks or lifestyle guidance.", link: "https://chatgpt.com" },
+                    { name: "Pi AI (Inflection)", rank: "badge-new", tier: "Free 100%", descVi: "Trợ lý AI chuyên biệt về hội thoại chữa lành, sở hữu giọng nói và văn phong tâm sự cực kỳ tự nhiên, thấu hiểu.", descEn: "Conversational companion explicitly engineered for high EQ interactions and supportive daily analytical chat.", link: "https://pi.ai" },
+                    { name: "Character.ai", rank: "badge-new", tier: "Free Tier", descVi: "Nền tảng giả lập và trò chuyện với các triết gia nổi tiếng (Socrates, Marcus Aurelius) hoặc các chuyên gia tâm lý ảo.", descEn: "Simulate and engage in direct textual debates with digital personas of historical figures or fictional coaches.", link: "https://character.ai" }
+                ],
+                "per-development": [
+                    { name: "Yoodli AI", rank: "badge-best", tier: "Free Tier", descVi: "AI huấn luyện kỹ năng thuyết trình và nói trước đám đông xuất sắc. Đếm chính xác từ thừa (à, ùm), phân tích tốc độ nói và ngôn ngữ cơ thể.", descEn: "AI speech coach providing private, real-time analytics on your communication, pacing, body language, and filler words.", link: "https://yoodli.ai" },
+                    { name: "Google Interview Warmup", rank: "badge-free", tier: "Free 100%", descVi: "Nền tảng luyện trả lời phỏng vấn ngành dọc (bao gồm Project Management) miễn phí hoàn toàn, giúp tối ưu hóa thuật ngữ chuyên nghiệp.", descEn: "A free tool from Google designed to practice answering behavioral and situational interview questions confidently.", link: "https://grow.google/interview-warmup" },
+                    { name: "Poised AI", rank: "badge-pop", tier: "Free Tier", descVi: "Trợ lý giao tiếp chạy ngầm trong cuộc họp trực tuyến (Zoom/Teams), cảnh báo trực tiếp nếu bạn nói quá nhanh hoặc thiếu năng lượng.", descEn: "An AI-powered communication coach that helps you speak with confidence and clarity during live professional meetings.", link: "https://poised.com" },
+                    { name: "Interviewer.AI", rank: "badge-new", tier: "Free Trial", descVi: "Hệ thống giả lập vòng phỏng vấn sơ loại qua video, chấm điểm tự động phong thái và kỹ năng mềm bằng trí tuệ nhân tạo.", descEn: "Automated video screening platform that grades candidate soft skills and presentation confidence metrics.", link: "https://interviewer.ai" },
+                    { name: "Timepage (Moleskine)", rank: "badge-new", tier: "Free Trial", descVi: "Ứng dụng lịch thông minh và quản lý thời gian cá nhân với giao diện nghệ thuật trực quan đỉnh cao từ Moleskine.", descEn: "An intuitive, designer smart calendar app by Moleskine Studio tailored to organize schedules smoothly.", link: "https://moleskine-studio.com" },
+                    { name: "Freeletics AI Coach", rank: "badge-new", tier: "Free Trial", descVi: "Huấn luyện viên thể hình số. Sử dụng thuật toán AI thiết lập giáo án Workout và Fitness chi tiết tại nhà dựa trên thể trạng.", descEn: "AI-driven fitness companion offering highly custom workout routines and fitness schedules without equipment.", link: "https://www.freeletics.com" }
+                ],
+                "per-education": [
+                    { name: "Wolfram Alpha", rank: "badge-best", tier: "Free Tier", descVi: "Cỗ máy tính toán tri thức đỉnh cao toàn cầu. Giải chi tiết từng bước (Step-by-step) các bài toán đại số, vật lý, hóa học siêu phức tạp.", descEn: "A massive computational knowledge engine that computes expert-level mathematical answers and science analytics.", link: "https://www.wolframalpha.com" },
+                    { name: "Socratic by Google", rank: "badge-free", tier: "Free 100%", descVi: "Ứng dụng quét đề bài bằng camera trên điện thoại, AI của Google tự tìm kiếm bài giải kèm tài liệu hình ảnh minh họa trực quan.", descEn: "Google's open education app that scans homework queries to output rich visual explanations and lecture videos.", link: "https://socratic.org" },
+                    { name: "ChatGPT (OpenAI)", rank: "badge-pop", tier: "Free Tier", descVi: "Trợ lý học tập vạn năng cho học sinh sinh viên: Giải thích khái niệm khó, tóm tắt bài giảng, hỗ trợ sửa và dịch thuật bài luận.", descEn: "Universal learning sidekick perfect for explaining academic text, summarizing research papers, and structural editing.", link: "https://chatgpt.com" },
+                    { name: "Anki AI (AnkiWeb)", rank: "badge-new", tier: "Free 100%", descVi: "Hệ thống Flashcard số ứng dụng thuật toán lặp lại ngắt quãng (Spaced Repetition), vũ khí tối thượng để ghi nhớ từ vựng lâu dài.", descEn: "Powerful flashcard ecosystem driven by smart spacing algorithms to optimize long-term text and vocabulary retention.", link: "https://apps.ankiweb.net" },
+                    { name: "ELSA Speak AI", rank: "badge-new", tier: "Free Tier", descVi: "AI luyện nói tiếng Anh hàng đầu. Lắng nghe và bóc tách lỗi phát âm chính xác đến từng âm tiết, định hướng theo chuẩn bản xứ.", descEn: "World-class English speaking tutor that analyzes voice inputs to fix pronunciation flaws syllable by syllable.", link: "https://elsaspeak.com" },
+                    { name: "Khanmigo (Khan Academy)", rank: "badge-new", tier: "Free Tier", descVi: "Trợ lý gia sư AI tích hợp trong hệ thống Khan Academy, định hướng gợi ý học sinh tự tư duy thay vì giải hộ.", descEn: "AI student tutor from Khan Academy tailored to guide learners step-by-step rather than just revealing solutions.", link: "https://www.khanacademy.org" }
+                ],
+                "pm-brainstorm": [
+                    { name: "Claude 3.5 Sonnet", rank: "badge-best", tier: "Free Tier", descVi: "Kiến trúc sư phần mềm ảo. Hỗ trợ xuất và chạy thử bản mô phỏng giao diện UI/UX của tính năng thông qua Artifacts.", descEn: "Virtual software architect. Renders interactive mockup interfaces right inside your workspace via Artifacts.", link: "https://claude.ai" },
+                    { name: "Gemini (Google)", rank: "badge-pop", tier: "Free Tier", descVi: "Kích hoạt ý tưởng nghiệp vụ và tính năng phần mềm cực nhanh nhờ khả năng hiểu ngữ cảnh rộng và tốc độ phản hồi tức thì.", descEn: "Accelerates early system feature listing and logic mapping with high-speed response generations.", link: "https://gemini.google.com" },
+                    { name: "DeepSeek-R1", rank: "badge-free", tier: "Free 100%", descVi: "Chuyên gia bóc tách logic hệ thống, tìm kiếm các lỗ hổng rủi ro (Edge Cases) trong tài liệu yêu cầu mà người thường dễ bỏ sót.", descEn: "Reasoning engine optimized to stress-test complex operational structures and catch edge-case flows for free.", link: "https://www.deepseek.com" },
+                    { name: "ChatGPT (GPT-4o)", rank: "badge-new", tier: "Free Tier", descVi: "Phân tích, phân rã sơ đồ chức năng (WBS) và gợi ý các tính năng cốt lõi cho ứng dụng di động vô cùng mượt mà.", descEn: "Splits down application modules into clean WBS arrays and suggests critical initial app features.", link: "https://chatgpt.com" },
+                    { name: "MindMeister AI", rank: "badge-new", tier: "Free Tier", descVi: "Tự động phát sinh các nhánh ý tưởng tính năng dạng sơ đồ tư duy trực quan từ một câu lệnh mô tả duy nhất.", descEn: "Transforms single core application prompts into massive structured mindmaps of functional features.", link: "https://www.mindmeister.com" }
+                ],
+                "pm-charter": [
+                    { name: "PMI Infinity", rank: "badge-best", tier: "PMI Member Free", descVi: "AI chính thức của Viện Quản lý Dự án (PMI). Nạp sẵn toàn bộ dữ liệu PMBOK Guide để viết tài liệu chuẩn hóa quốc tế.", descEn: "The official AI specialized by the Project Management Institute, strictly driven by verified PMBOK guidelines.", link: "https://www.pmi.org/infinity" },
+                    { name: "ChatGPT (GPT-4o)", rank: "badge-pop", tier: "Free Tier", descVi: "Kho lưu trữ biểu mẫu khổng lồ, hỗ trợ lên khung Project Charter và Ma trận trách nhiệm RACI chuẩn chỉnh trong vài giây.", descEn: "A massive repository of business document structures; maps out RACI metrics and risk registers instantly.", link: "https://chatgpt.com" },
+                    { name: "Grok 2 (xAI)", rank: "badge-free", tier: "Free Tier", descVi: "Hỗ trợ thu thập thông tin thị trường thực tế để lập luận các giả định rủi ro kinh doanh ban đầu cho bản Charter.", descEn: "Leverages live market contexts to build logical project assumptions and strategic initial milestones.", link: "https://x.com" },
+                    { name: "Claude 3.5 Sonnet", rank: "badge-new", tier: "Free Tier", descVi: "Xử lý câu từ chuyên nghiệp, soạn thảo các điều khoản quản trị dự án gãy gọn và phân tích rủi ro có chiều sâu.", descEn: "Polishes enterprise documentation tone and structures strict, comprehensive project milestone frameworks.", link: "https://claude.ai" },
+                    { name: "ClickUp Brain", rank: "badge-new", tier: "Free Trial", descVi: "Trí tuệ nhân tạo tích hợp trực tiếp trong công cụ quản lý dự án ClickUp, tự động hóa việc sinh các bản Charter và Docs.", descEn: "In-context AI engine built into ClickUp to generate project briefs and initial timeline charts dynamically.", link: "https://clickup.com" }
+                ],
+                "pm-meeting": [
+                    { name: "Fireflies.ai", rank: "badge-best", tier: "Free Tier", descVi: "Bot AI tự động tham gia các nền tảng họp trực tuyến để ghi âm, rã chữ tiếng Việt và trích xuất Action Items chuẩn xác.", descEn: "Automated note bot that logs into major video calls to transcribe conversations and delegate core task items.", link: "https://fireflies.ai" },
+                    { name: "Fathom AI", rank: "badge-free", tier: "Free 100%", descVi: "Ghi hình và tóm tắt biên bản cuộc họp miễn phí hoàn toàn dành cho cá nhân, đánh dấu thông minh các mốc đối thoại quan trọng.", descEn: "100% free meeting recorder for individuals; perfectly flags key highlights and updates timeline boards.", link: "https://fathom.video" },
+                    { name: "Krisp AI", rank: "badge-pop", tier: "Free Tier", descVi: "Khử sạch mọi tạp âm môi trường bằng thuật toán AI, đồng thời tích hợp tính năng take note biên bản họp ngắn gọn.", descEn: "Clears complex background environment noises while generating cleanly structured post-call summaries.", link: "https://krisp.ai" },
+                    { name: "Otter.ai", rank: "badge-new", tier: "Free Tier", descVi: "Công cụ rã chữ và phân tách giọng nói của từng speaker cực chuẩn, chuyên nghiệp cho các cuộc họp tiếng Anh.", descEn: "World-class English audio transcriber with smart identification tags for distinct speaker nodes.", link: "https://otter.ai" },
+                    { name: "tl;dv", rank: "badge-new", tier: "Free Tier", descVi: "Ghi hình cuộc họp trên Meet/Zoom, hỗ trợ AI tóm tắt ngắn gọn và cho phép tìm kiếm từ khóa trực tiếp ra đoạn video tương ứng.", descEn: "Records Zoom/Meet events, allowing semantic searches across transcripts to jump to exact video stamps.", link: "https://tldv.io" }
+                ],
+                "pm-presentation": [
+                    { name: "Gamma App", rank: "badge-best", tier: "Free Credits", descVi: "Biến văn bản thô thành slide thuyết trình tự động chỉ trong 1 cú click với bố cục hiện đại, chuyên nghiệp cho Sponsor duyệt.", descEn: "Transforms plain text bullet points into highly polished slide structures optimized for stakeholder syncs.", link: "https://gamma.app" },
+                    { name: "Canva AI", rank: "badge-pop", tier: "Free Tier", descVi: "Bộ công cụ 'Magic Design' hỗ trợ tạo slide thuyết trình đồng bộ theo nhận diện màu sắc thương hiệu của dự án.", descEn: "Features Magic Design workflows to construct brand-consistent presentations with clean visual layouts.", link: "https://www.canva.com" },
+                    { name: "Beautiful.ai", rank: "badge-new", tier: "Free Trial", descVi: "Slide thông minh tự động co giãn căn chỉnh bố cục phần tử khi bạn thêm bớt chữ, giữ nguyên tính thẩm mỹ cao cấp.", descEn: "Smart template slides that adjust padding and positioning values automatically as you add text cards.", link: "https://www.beautiful.ai" },
+                    { name: "Tome AI", rank: "badge-new", tier: "Free Tier", descVi: "Tập trung xây dựng slide dưới dạng câu chuyện (Storytelling) mạch lạc, kết hợp hình ảnh minh họa sinh động từ AI.", descEn: "Constructs cohesive long-form dynamic presentations emphasizing clean narrative storytelling paths.", link: "https://tome.app" },
+                    { name: "SlidesPilot", rank: "badge-new", tier: "Free Tier", descVi: "Chuyển đổi trực tiếp tài liệu dự án (PDF/Word) thành tệp slide PowerPoint (.pptx) có thể tải về máy chỉnh sửa dễ dàng.", descEn: "Converts macro source docs directly into highly structured native edit-ready PowerPoint downloads.", link: "https://www.slidespilot.com" }
+                ],
+                "pm-report": [
+                    { name: "Napkin AI", rank: "badge-best", tier: "Free Tier", descVi: "Đột phá trực quan hóa: Tự động phân tích các đoạn báo cáo chữ của PM để xuất ra sơ đồ khối, hình vẽ minh họa tương ứng.", descEn: "Analyzes text heavy operational updates and auto-generates matching mindmaps, Venn charts, and block flows.", link: "https://www.napkin.ai" },
+                    { name: "Mermaid Live Editor", rank: "badge-free", tier: "Free 100%", descVi: "Sử dụng cú pháp mã nguồn đơn giản để vẽ nhanh các biểu đồ Sequence, Flowchart dự án miễn phí và sắc nét.", descEn: "Compiles basic plain-text script syntax into high-res project Gantt charts and architecture blocks for free.", link: "https://mermaid.live" },
+                    { name: "v0 by Vercel (Dashboard)", rank: "badge-new", tier: "Free Tier", descVi: "Dựng nhanh giao diện bảng biểu Dashboard báo cáo số liệu dự án cực kỳ đẹp mắt từ mô tả ngôn ngữ tự nhiên.", descEn: "Rapidly builds operational data tables and visual layout dashboard blocks from regular chat entries.", link: "https://v0.dev" },
+                    { name: "ChatBA", rank: "badge-new", tier: "Free Tier", descVi: "Trợ lý AI chuyên biệt hỗ trợ tạo các biểu đồ phân tích kinh doanh nghiệp vụ nhanh chóng từ dữ liệu thô đầu vào.", descEn: "Niche business analytics prompt agent to parse raw arrays into structured statistical review charts.", link: "https://www.chatba.com" },
+                    { name: "Whimsical AI (Charts)", rank: "badge-new", tier: "Free Tier", descVi: "Xây dựng sơ đồ phân cấp dự án và sơ đồ luồng dữ liệu (Dataflow) nhanh chóng với sự trợ giúp đắc lực từ AI.", descEn: "Generate structural layout charts and logic block architectures instantly using conversational guidance.", link: "https://whimsical.com" }
+                ],
+                "des-mindmap": [
+                    { name: "Whimsical AI", rank: "badge-best", tier: "Free Tier", descVi: "Không gian thiết kế tối giản giúp phác thảo luồng kiến trúc thông tin (Information Architecture) nhanh nhất cho Designer.", descEn: "Clean, distraction-free canvas engineered for rapid information architecture mapping and workflow wireframing.", link: "https://whimsical.com" },
+                    { name: "Miro AI", rank: "badge-free", tier: "Free Tier", descVi: "Bảng trắng cộng tác trực tuyến miễn phí, hỗ trợ tính năng AI tự động mở rộng các nhánh ý tưởng từ các thẻ sticker.", descEn: "Industry standard collaboration board featuring automated mindmap node expansions and layout groupings.", link: "https://miro.com" },
+                    { name: "GitMind AI", rank: "badge-new", tier: "Free Tier", descVi: "Nền tảng sơ đồ tư duy thế hệ mới, đa dạng template và tự động phân tách ý tưởng thiết kế chi tiết bằng AI.", descEn: "Modern conceptual layout engine offering hundreds of ready styles and auto-expanding design nodes.", link: "https://gitmind.com" },
+                    { name: "XMind AI", rank: "badge-new", tier: "Free Tier", descVi: "Thương hiệu sơ đồ tư duy lâu đời nay tích hợp AI mạnh mẽ để tổ chức cấu trúc thông tin giao diện phức tạp.", descEn: "Classic mind-mapping framework upgraded with conversational tools to handle convoluted UI architecture maps.", link: "https://xmind.ai" },
+                    { name: "EdrawMind AI", rank: "badge-new", tier: "Free Tier", descVi: "Hỗ trợ chuyển đổi toàn bộ file kịch bản chữ thành sơ đồ phân tích UI/UX chỉ trong vài giây.", descEn: "Compiles deep functional copywriting scripts into layered layout charts with single-click actions.", link: "https://www.edrawsoft.com/edrawmind/" }
+                ],
+                "des-image": [
+                    { name: "Midjourney (v6)", rank: "badge-best", tier: "Paid", descVi: "Đỉnh cao đồ họa thế giới. Tạo hình ảnh concept nghệ thuật, banner quảng cáo sản phẩm với độ thẩm mỹ sâu và sắc nét.", descEn: "The world standard for artistic asset rendering, detailed marketing layouts, and high-fidelity branding art.", link: "https://www.midjourney.com" },
+                    { name: "Recraft AI", rank: "badge-pop", tier: "Free Tier", descVi: "Công cụ tối thượng cho thiết kế phần mềm: Xuất file ảnh Vector (.svg) nguyên bản và tạo các bộ icon đồng bộ thiết kế UI.", descEn: "Built for UI designers: Outputs native infinite-resolution vector graphics (.svg) and matched app icon grids.", link: "https://www.recraft.ai" },
+                    { name: "Canva AI", rank: "badge-free", tier: "Free 100%", descVi: "Hỗ trợ xóa nền nhanh, chỉnh sửa vật thể bằng cọ vẽ AI, thiết kế banner truyền thông mạng xã hội dễ dàng, miễn phí.", descEn: "Expedites marketing image edits, object brush swaps, and high-quality bg removals on an open free canvas.", link: "https://canva.com" },
+                    { name: "Adobe Firefly", rank: "badge-new", tier: "Free Credits", descVi: "AI thế hệ mới từ Adobe, an toàn cho thương mại, tích hợp sâu vào Photoshop để mở rộng vùng ảnh và thêm bớt vật thể.", descEn: "Commercially safe generative engine by Adobe; natively expands layouts and alters canvas areas within Photoshop.", link: "https://www.adobe.com/products/firefly.html" },
+                    { name: "Leonardo.ai", rank: "badge-new", tier: "Free Tier", descVi: "Cung cấp kho model tinh chỉnh khổng lồ, kiểm soát chi tiết góc máy, độ sâu trường ảnh và chất liệu bề mặt vật thể cực tốt.", descEn: "Provides immense pipeline model variants to fine-tune image seed generations, aspect splits, and style rules.", link: "https://leonardo.ai" },
+                    { name: "Stable Diffusion (Clipdrop)", rank: "badge-new", tier: "Free Tier", descVi: "Môi trường thử nghiệm mã nguồn mở mạnh mẽ, cho phép phác thảo nét vẽ tay thô sơ thành tranh render hoàn thiện.", descEn: "Open-source playground environment allowing users to transform rough outline scribbles into fully textured renders.", link: "https://clipdrop.co" }
+                ],
+                "des-video": [
+                    { name: "Synthesia", rank: "badge-best", tier: "Paid Only", descVi: "Sản xuất video giới thiệu sản phẩm chuyên nghiệp với người ảo (Avatar) nói chuyện tự nhiên bằng 120+ ngôn ngữ từ kịch bản văn bản.", descEn: "Generates high-end corporate product videos with realistic human avatars reading scripts in 120+ languages.", link: "https://www.synthesia.io" },
+                    { name: "Luma Dream Machine", rank: "badge-free", tier: "Free Credits", descVi: "Render các clip sản phẩm chuyển động 3D mượt mà từ ảnh tĩnh, giữ cấu trúc vật thể ổn định, tối ưu làm storyboard.", descEn: "Generates fluid cinematic camera motions and video generations directly from text paths or still photos.", link: "https://lumalabs.ai/dream-machine" },
+                    { name: "Runway Gen-3", rank: "badge-pop", tier: "Free Credits", descVi: "Tiên phong trong lĩnh vực video AI, tạo ra các cảnh quay điện ảnh có độ trung thực cao và kiểm soát chuyển động camera chính xác.", descEn: "Industry standard cinematic text-to-video processor featuring ultra-high render detail metrics.", link: "https://runwayml.com" },
+                    { name: "Pika Labs", rank: "badge-new", tier: "Free Tier", descVi: "Nền tảng làm video hoạt hình, hoạt cảnh ngắn vô cùng linh hoạt, cho phép chỉnh sửa trực tiếp chuyển động của một vùng nhỏ trên video.", descEn: "Highly versatile motion rendering engine specialized for short micro-animations and contextual object scaling.", link: "https://pika.art" },
+                    { name: "HeyGen", rank: "badge-new", tier: "Free Trial", descVi: "Tạo video marketing với avatar người nói chuyện chuyên nghiệp, tự động đồng bộ khẩu hình môi cực kỳ chân thực.", descEn: "Generates modern presenter video frameworks using automated lip-sync mechanisms over custom marketing text sheets.", link: "https://www.heygen.com" }
+                ],
+                "dev-coding": [
+                    { name: "Cursor Editor", rank: "badge-best", tier: "Free Tier", descVi: "Trình soạn thảo mã nguồn tối tân nhất hiện nay. Đọc hiểu toàn bộ cấu trúc thư mục dự án để tự viết các file tính năng lớn.", descEn: "The leading AI code editor globally. Indexes entire localized codebases to inject macro feature blocks.", link: "https://www.cursor.com" },
+                    { name: "Gemini (Code Assist)", rank: "badge-pop", tier: "Free Tier", descVi: "Tích hợp sâu trong môi trường code để giải thích thuật toán, refactor mã nguồn và sửa lỗi cú pháp nhanh chóng.", descEn: "Provides seamless contextual logic debugging, code generation, and complex structure refactoring workflows.", link: "https://gemini.google.com" },
+                    { name: "Phind", rank: "badge-free", tier: "Free 100%", descVi: "AI Search chuyên sâu miễn phí cho lập trình viên. Tìm kiếm giải pháp lập trình trực tiếp từ tài liệu gốc và StackOverflow.", descEn: "A specialized search crawler that outputs working code answers sourced directly from official tech docs.", link: "https://www.phind.com" },
+                    { name: "GitHub Copilot", rank: "badge-new", tier: "Paid", descVi: "Trợ lý viết code hàng đầu thế giới từ GitHub, tự động hoàn thiện dòng code (Auto-complete) cực kỳ thông minh.", descEn: "World class inline code completion companion indexing millions of active repositories to optimize logic flows.", link: "https://github.com/features/copilot" },
+                    { name: "Claude 3.5 Sonnet (Coding)", rank: "badge-new", tier: "Free Tier", descVi: "Vua thuật toán và tư duy logic logic. Khắc phục các lỗi cấu trúc mã nguồn phức tạp bực nhất một cách triệt để.", descEn: "The supreme standard for advanced algorithmic writing and fixing macro structural software codebase bugs.", link: "https://claude.ai" },
+                    { name: "Tabnine", rank: "badge-new", tier: "Free Tier", descVi: "Công cụ gợi ý code chạy nội bộ cực an toàn bảo mật, bảo vệ toàn vẹn tài sản mã nguồn của doanh nghiệp.", descEn: "Secure context-aware local code prediction companion keeping your core system enterprise scripting strictly private.", link: "https://www.tabnine.com" }
+                ],
+                "dev-ui": [
+                    { name: "v0 by Vercel", rank: "badge-best", tier: "Free Tier", descVi: "Sinh nhanh mã nguồn giao diện Front-end (React, Vue, Tailwind CSS) chuẩn sản xuất cực đẹp chỉ từ mô tả chữ hoặc ảnh chụp.", descEn: "Generates component blocks in clean, production-ready frontend code bases derived from mock screens.", link: "https://v0.dev" },
+                    { name: "Bolt.new", rank: "badge-free", tier: "Free Tier", descVi: "Môi trường Full-stack sandbox chạy hoàn toàn trên trình duyệt: Tự động cài thư viện, viết code và deploy dự án chỉ từ prompt.", descEn: "Full-stack sandbox engine: Installs modules, edits scripts, previews, and deploys code architectures online.", link: "https://bolt.new" },
+                    { name: "Anima App", rank: "badge-new", tier: "Free Tier", descVi: "Chuyển đổi trực tiếp các file thiết kế giao diện từ Figma thành mã nguồn code Front-end sạch sẽ, dễ bảo trì.", descEn: "Compiles layered static Figma asset design components into editable, clean production frontend codebases.", link: "https://www.animaapp.com" },
+                    { name: "Locofy AI", rank: "badge-new", tier: "Free Tier", descVi: "AI hỗ trợ chuyển đổi thiết kế sang code React, React Native, Flutter, nâng cao hiệu suất làm việc gấp 5 lần.", descEn: "Accelerates design-to-code shipping frameworks directly exporting elements into highly responsive mobile code structures.", link: "https://www.locofy.ai" },
+                    { name: "Uizard", rank: "badge-new", tier: "Free Tier", descVi: "Biến bản vẽ phác thảo bằng tay trên giấy thành wireframe số và mẫu prototype UI tương tác hiện đại trong nháy mắt.", descEn: "Transforms low-fidelity pen-and-paper napkin drawings into fully clickable interactive mockup application screens.", link: "https://uizard.io" }
+                ],
+                "dev-automation": [
+                    { name: "Make.com", rank: "badge-best", tier: "Free Tier", descVi: "Tự động hóa luồng dữ liệu thông qua giao diện kéo thả trực quan giữa hàng ngàn hệ thống (API, ERP, CRM, Webhook).", descEn: "Designs automated cross-platform data pipelines via a node-based drag-and-drop workflow matrix.", link: "https://www.make.com" },
+                    { name: "Zapier AI", rank: "badge-pop", tier: "Free Tier", descVi: "Kết nối luồng tự động hóa bằng câu lệnh ngôn ngữ tự nhiên, giúp các hệ thống phần mềm giao tiếp không cần viết mã.", descEn: "Syncs business application workflows dynamically using simple conversational plain text trigger commands.", link: "https://zapier.com" },
+                    { name: "n8n.io", rank: "badge-free", tier: "Free Open Source", descVi: "Giải pháp tự động hóa mã nguồn mở mạnh mẽ, cho phép self-host trên máy chủ riêng để xử lý luồng dữ liệu không giới hạn.", descEn: "Fair-code node-based integration setup allowing self-hosted deployments to process data rows with zero middle-man fees.", link: "https://n8n.io" },
+                    { name: "Bardeen AI", rank: "badge-new", tier: "Free Tier", descVi: "Tự động hóa tác vụ duyệt web trực tiếp qua Extension trình duyệt, cào dữ liệu dữ liệu và đồng bộ hóa không cần API phức tạp.", descEn: "In-browser contextual extension automating web scraping chores and sheet additions without cloud pipeline costs.", link: "https://www.bardeen.ai" },
+                    { name: "Flowise AI", rank: "badge-new", tier: "Free Open Source", descVi: "Giao diện kéo thả UI trực quan giúp xây dựng nhanh các luồng tự động hóa tích hợp trợ lý AI LLM (Langchain Core).", descEn: "Open source low-code UI to orchestrate custom LLM agent pipelines and complex memory prompt chains seamlessly.", link: "https://flowiseai.com" }
+                ]
+            }
+        };
+
+        let currentLang = 'vi';
+
+        function updateStepItems(activeStep) {
+            const dot1 = document.getElementById('dot-step-1');
+            const dot2 = document.getElementById('dot-step-2');
+            const dot3 = document.getElementById('dot-step-3');
+
+            if (dot1) dot1.innerHTML = `<span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-700"></span>`;
+            if (dot2) dot2.innerHTML = `<span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-purple-700"></span>`;
+            if (dot3) dot3.innerHTML = `<span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-indigo-700"></span>`;
+
+            if (activeStep === 1 && dot1) {
+                dot1.innerHTML = `
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400/50 opacity-40 delay-300"></span>
+                    <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.9)]"></span>`;
+            } else if (activeStep === 2 && dot2) {
+                dot2.innerHTML = `
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400/50 opacity-40 delay-300"></span>
+                    <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.9)]"></span>`;
+            } else if (activeStep === 3 && dot3) {
+                dot3.innerHTML = `
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400/50 opacity-40 delay-300"></span>
+                    <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-indigo-500 shadow-[0_0_12px_rgba(99,102,241,0.9)]"></span>`;
+            }
+        }
+
+        function selectRole(roleId) {
+            updateStepItems(2);
+
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.classList.remove('border-indigo-500', 'border-purple-500', 'border-amber-500', 'border-cyan-500', 'bg-slate-900/90', 'shadow-[0_0_20px_rgba(6,182,212,0.15)]');
+                btn.classList.add('border-slate-800', 'bg-slate-900/40');
+            });
+
+            const activeBtn = document.getElementById(`btn-role-${roleId}`);
+            let themeColor = 'border-indigo-500';
+            let shadowStyle = 'shadow-[0_0_20px_rgba(99,102,241,0.15)]';
+            if(roleId === 'designer') { themeColor = 'border-purple-500'; shadowStyle = 'shadow-[0_0_20px_rgba(168,85,247,0.15)]'; }
+            if(roleId === 'developer') { themeColor = 'border-amber-500'; shadowStyle = 'shadow-[0_0_20px_rgba(245,158,11,0.15)]'; }
+            if(roleId === 'personal') { themeColor = 'border-cyan-500'; shadowStyle = 'shadow-[0_0_20px_rgba(6,182,212,0.15)]'; }
+            
+            activeBtn.classList.remove('border-slate-800', 'bg-slate-900/40');
+            activeBtn.classList.add(themeColor, 'bg-slate-900/90', shadowStyle);
+
+            const taskContainer = document.getElementById('task-container');
+            taskContainer.innerHTML = '';
+            
+            database.tasks[roleId].forEach(task => {
+                const btn = document.createElement('button');
+                btn.className = `task-item bg-slate-950/80 hover:bg-slate-900 border border-slate-800 text-sm p-4 rounded-xl text-slate-300 transition-all duration-200 hover:border-slate-600 flex items-center gap-3 cursor-pointer shadow-sm text-left font-semibold w-full`;
+                btn.onclick = () => selectTask(task.id, btn);
+                
+                const displayName = currentLang === 'vi' ? task.nameVi : task.nameEn;
+                btn.innerHTML = `<i class="fa-solid ${task.icon} text-base text-cyan-400 shrink-0"></i> <span>${displayName}</span>`;
+                taskContainer.appendChild(btn);
+            });
+
+            document.getElementById('section-tasks').classList.remove('hidden');
+            document.getElementById('section-results').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('section-tasks').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 100);
+        }
+
+        function selectTask(taskId, element) {
+            updateStepItems(3);
+
+            document.querySelectorAll('.task-item').forEach(item => {
+                item.classList.remove('border-cyan-500', 'bg-cyan-950/20', 'text-cyan-300');
+                item.classList.add('border-slate-800', 'bg-slate-950/80', 'text-slate-300');
+            });
+            element.classList.remove('border-slate-800', 'bg-slate-950/80', 'text-slate-300');
+            element.classList.add('border-cyan-500', 'bg-cyan-950/20', 'text-cyan-300');
+
+            const aiTools = database.aiTools[taskId] || [];
+            const aiListContainer = document.getElementById('ai-list-container');
+            aiListContainer.innerHTML = '';
+            
+            const countTemplate = i18nData[currentLang]["found-text"];
+            document.getElementById('results-count').innerText = countTemplate.replace("{n}", aiTools.length);
+
+            aiTools.forEach(ai => {
+                const card = document.createElement('div');
+                card.className = "p-5 md:p-6 rounded-2xl border border-slate-700/60 bg-[#070b19] flex flex-col justify-between gap-6 transition-all duration-300 hover:border-cyan-400/80 hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] group relative overflow-hidden w-full box-border";
+                
+                let rankBadgeText = i18nData[currentLang][ai.rank] || "AI Mở Rộng";
+                let rankColor = "bg-indigo-500/10 text-indigo-300 border-indigo-500/20";
+                if(ai.rank === "badge-best") rankColor = "bg-cyan-500/20 text-cyan-300 border-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.1)]";
+                if(ai.rank === "badge-pop") rankColor = "bg-purple-500/20 text-purple-300 border-purple-500/30";
+
+                const displayDesc = currentLang === 'vi' ? ai.descVi : ai.descEn;
+                const btnText = i18nData[currentLang]["btn-use-now"];
+
+                card.innerHTML = `
+                    <div class="space-y-3.5 relative z-10 w-full">
+                        <div class="flex items-center justify-between flex-wrap gap-2 w-fullBox">
+                            <h4 class="font-extrabold text-white text-lg md:text-xl tracking-tight group-hover:text-cyan-400 transition-colors break-words max-w-[60%]">${ai.name}</h4>
+                            <div class="flex gap-1.5 shrink-0">
+                                <span class="text-[9px] md:text-[10px] uppercase font-black tracking-widest border px-2 py-0.5 rounded-md ${rankColor}">${rankBadgeText}</span>
+                                <span class="text-[9px] md:text-[10px] uppercase font-black tracking-widest border border-slate-800 bg-slate-900 text-slate-400 px-2 py-0.5 rounded-md">${ai.tier}</span>
+                            </div>
+                        </div>
+                        <p class="text-xs md:text-sm text-slate-300 leading-relaxed font-medium break-words">${displayDesc}</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-900/60 flex justify-end relative z-10 w-full">
+                        <a href="${ai.link}" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-extrabold text-[10px] md:text-xs uppercase tracking-widest px-4 py-2.5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/20 group/btn cursor-pointer">
+                            <span>${btnText}</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"></i>
+                        </a>
+                    </div>
+                `;
+                aiListContainer.appendChild(card);
+            });
+
+            document.getElementById('section-results').classList.remove('hidden');
+            document.getElementById('section-results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function updateLanguageDOM() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18nData[currentLang][key]) el.innerHTML = i18nData[currentLang][key];
+            });
+            
+            const textTarget = currentLang === 'en' ? 'TIẾNG VIỆT' : 'ENGLISH';
+            if(document.getElementById('lang-text')) document.getElementById('lang-text').innerText = textTarget;
+            if(document.querySelector('.lang-text-mobile')) document.querySelector('.lang-text-mobile').innerText = textTarget;
+            
+            updateStepItems(1);
+            
+            document.getElementById('section-tasks').classList.add('hidden');
+            document.getElementById('section-results').classList.add('hidden');
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.classList.remove('border-indigo-500', 'border-purple-500', 'border-amber-500', 'border-cyan-500', 'bg-slate-900/90', 'shadow-[0_0_20px_rgba(6,182,212,0.15)]');
+                btn.classList.add('border-slate-800', 'bg-slate-900/40');
+            });
+        }
+
+        function toggleLang() { 
+            currentLang = currentLang === 'en' ? 'vi' : 'en'; 
+            updateLanguageDOM(); 
+        }
+
+        updateLanguageDOM();
+    </script>
+ 
+    <!-- Dify Chatbot Embedding -->
+    <script>
+        window.difyChatbotConfig = { token: '01A0artkKYLulTJr', inputs: {}, systemVariables: {}, userVariables: {} }
+    </script>
+    <script src="https://udify.app/embed.min.js" id="01A0artkKYLulTJr" defer></script>
+    <style>
+        #dify-chatbot-bubble-button { background-color: #1C64F2 !important; }
+        #dify-chatbot-bubble-window { width: 24rem !important; height: 40rem !important; max-width: 100% !important; }
+    </style>     
+</body>
+</html>
